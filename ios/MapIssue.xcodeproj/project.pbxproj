@@ -13,6 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		916F5466B4510EF1A4D9F1AE /* libPods-MapIssue-MapIssueTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC703754F5F9C0FF1BD621C /* libPods-MapIssue-MapIssueTests.a */; };
+		99DAFD3028103C0300DBE30E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAFD2F28103C0300DBE30E /* File.swift */; };
 		FB660FE24B0062D7733ED732 /* libPods-MapIssue.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BC5CF26AC1A711C5CF3A17 /* libPods-MapIssue.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,8 @@
 		7D9D586FF4D3C16FA771FD11 /* Pods-MapIssue-MapIssueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapIssue-MapIssueTests.debug.xcconfig"; path = "Target Support Files/Pods-MapIssue-MapIssueTests/Pods-MapIssue-MapIssueTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MapIssue/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		945CC373E35CD3F09683254E /* Pods-MapIssue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapIssue.release.xcconfig"; path = "Target Support Files/Pods-MapIssue/Pods-MapIssue.release.xcconfig"; sourceTree = "<group>"; };
+		99DAFD2E28103C0300DBE30E /* MapIssue-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapIssue-Bridging-Header.h"; sourceTree = "<group>"; };
+		99DAFD2F28103C0300DBE30E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -91,7 +94,6 @@
 				7D9D586FF4D3C16FA771FD11 /* Pods-MapIssue-MapIssueTests.debug.xcconfig */,
 				113084361017C52C4AD4E3A7 /* Pods-MapIssue-MapIssueTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -128,12 +130,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				99DAFD2F28103C0300DBE30E /* File.swift */,
 				13B07FAE1A68108700A75B9A /* MapIssue */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MapIssueTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				04B1D1BAEC69772B42EA2DA2 /* Pods */,
+				99DAFD2E28103C0300DBE30E /* MapIssue-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -208,7 +212,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -412,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				99DAFD3028103C0300DBE30E /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D9D586FF4D3C16FA771FD11 /* Pods-MapIssue-MapIssueTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -458,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 113084361017C52C4AD4E3A7 /* Pods-MapIssue-MapIssueTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = MapIssueTests/Info.plist;
@@ -485,6 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9N3AC6D9A;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MapIssue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,8 +504,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.MapIssueAH;
 				PRODUCT_NAME = MapIssue;
+				SWIFT_OBJC_BRIDGING_HEADER = "MapIssue-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -511,6 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9N3AC6D9A;
 				INFOPLIST_FILE = MapIssue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,8 +531,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.MapIssueAH;
 				PRODUCT_NAME = MapIssue;
+				SWIFT_OBJC_BRIDGING_HEADER = "MapIssue-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
