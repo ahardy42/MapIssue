@@ -27,7 +27,6 @@ target 'MapIssue' do
 
   pre_install do |installer|
     $RNMBGL.pre_install(installer)
-    ... other pre install hooks
   end
 
   post_install do |installer|
