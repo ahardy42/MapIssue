@@ -1,112 +1,108 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  Text
 } from 'react-native';
+import MapboxGL from '@react-native-mapbox-gl/maps';
+import Config from 'react-native-config';
+import ShapeLayer from './components/ShapeLayer';
+import { generateRandom, returnBounds } from './data';
+import marker from './assets/marker.png'
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const { width, height } = Dimensions.get('window');
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+MapboxGL.setAccessToken(Config.MAPBOX_KEY)
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  page: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width,
+    height
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  map: {
+    width: '100%',
+    height: '100%'
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  buttons: {
+    flexDirection: 'row',
+    left: 20,
+    right: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    position: 'absolute',
+    bottom: 50,
+    height: 50,
+    borderRadius: 4
   },
-  highlight: {
-    fontWeight: '700',
+  button: {
+    backgroundColor: 'tomato',
+    height: 40,
+    marginHorizontal: 4,
+    borderRadius: 4,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+  text: {
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: 'bold',
+    color: 'white'
+  }
 });
 
-export default App;
+const bounds = returnBounds()
+
+export default function App() {
+
+  const [shape, setShape] = React.useState(null)
+  const [styleURL, setStyleURL] = React.useState(MapboxGL.StyleURL.Outdoors)
+
+  const onPress = React.useCallback(type => setStyleURL(MapboxGL.StyleURL[type] ?? MapboxGL.StyleURL.Dark), [])
+
+  React.useEffect(async () => {
+    const { data } = await generateRandom()
+    setShape(data)
+  }, [])
+
+  return (
+    <View style={styles.page}>
+      <MapboxGL.MapView
+        {...{ styleURL }}
+        attributionPosition={{ bottom: 125, right: 10 }}
+        logoPosition={{ bottom: 125, left: 10 }}
+        style={styles.map}
+      >
+        <MapboxGL.Images images={{ marker }} />
+        <MapboxGL.Camera {...{ bounds }} padding={{ paddingBottom: 20, paddingLeft: 20, paddingRight: 20, paddingTop: 20 }} />
+        <ShapeLayer {...{ shape }} />
+      </MapboxGL.MapView>
+      <View style={styles.buttons}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onPress('Dark')}
+        >
+          <Text style={styles.text}>Dark</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onPress('Satellite')}
+        >
+          <Text style={styles.text}>Satellite</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onPress('Outdoors')}
+        >
+          <Text style={styles.text}>Outdoors</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
+}

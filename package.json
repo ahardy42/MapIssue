@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@react-native-mapbox-gl/maps": "^8.6.0-beta.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/random": "^6.5.0",
+    "lodash.isequal": "^4.5.0",
     "react": "17.0.1",
-    "react-native": "0.64.2"
+    "react-native": "0.64.2",
+    "react-native-config": "^1.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
