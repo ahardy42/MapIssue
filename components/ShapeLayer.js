@@ -22,7 +22,7 @@ function ShapeLayer({ shape }) {
                     textSize: 14,
                     textPitchAlignment: 'map',
                     textColor: 'white',
-                    textFont: ['Work Sans Bold'], // < -- uncomment and this breaks the app
+                    // textFont: ['Work Sans Bold'], // < -- uncomment and this breaks the app
                     textAllowOverlap: true
                 }}
             />
